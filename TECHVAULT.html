@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>TechVault Prototype Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+<link 
+rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- =========================
+     WELCOME / INTRO PAGE
+========================= -->
+
+<div id="welcome">
+
+    <div class="welcome-content">
+
+        <h1>Welcome to TECHVAULT</h1>
+
+        <p>
+            Showcasing ECE Students' Prototypes and Innovation
+        </p>
+
+        <button type="button" onclick="enterDashboard()">
+            Enter Dashboard
+        </button>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<div class="sidebar">
+
+<h2>
+    TechVault
+</h2>
+
+<a id="navHome" onclick="showHome()">
+
+    <i class="fa-solid fa-house"></i>
+
+    <span>
+        Home
+    </span>
+
+</a>
+
+<a id="navAdd" onclick="showAdd()">
+
+    <i class="fa-regular fa-file-lines"></i>
+
+    <span>
+        Add Prototype
+    </span>
+
+</a>
+
+<a id="navCategories" onclick="showCategories()">
+
+    <i class="fa-solid fa-layer-group"></i>
+
+    <span>
+        Categories
+    </span>
+
+</a>
+
+<a id="navAbout" onclick="showAbout()">
+
+    <i class="fa-solid fa-circle-info"></i>
+
+    <span>
+        About Us
+    </span>
+
+</a>
+
+</div>
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<div class="dashboard">
+
+<!-- =========================
+     HOME
+========================= -->
+
+<div id="home">
+
+<div class="content-card">
+
+    <!-- SEARCH -->
+
+    <h2>
+        Search Prototype
+    </h2>
+
+    <input
+        type="text"
+        id="searchBar"
+        placeholder="🔍 Search Prototype..."
+        oninput="searchPrototypes()"
+    >
+
+    <!-- SEARCH RESULTS -->
+
+    <div class="prototype-container">
+
+<h2 id="searchResultTitle">
+
+Search Result
+
+</h2>
+
+<div id="searchResults">
+
+</div>
+
+<p
+id="noPrototypeMessage"
+style="display:none;"
+
+No prototype found.
+
+</p>
+
+</div>
+
+    <h1>
+        Welcome to TechVault
+    </h1>
+
+    <p>
+
+        <strong>TechVault: Showcasing ECE Students'
+        Prototypes and Innovation</strong> is a digital
+        platform created to showcase and organize
+        innovative prototypes developed by Electronics
+        Engineering students.
+
+    </p>
+
+    <p>
+
+        TechVault provides a centralized space where
+        students' projects can be documented and easily
+        explored according to their respective courses
+        and categories.
+
+    </p>
+
+    <h2>
+        What is TechVault for?
+    </h2>
+
+    <p>
+
+        TechVault is designed to preserve and present
+        the creativity, skills, and innovations of ECE
+        students. It allows users to explore information
+        about different prototypes, including their
+        descriptions, purposes, components, members,
+        schematic diagrams, and prototype pictures.
+
+    </p>
+
+    <h2>
+        How to Use TechVault
+    </h2>
+
+    <p>
+
+        Use the <strong>Search Prototype</strong> bar
+        below to quickly find a prototype. You may also
+        use the <strong>Categories</strong> section to
+        browse projects according to their course.
+
+    </p>
+
+    <p>
+
+        Teachers or authorized users may use
+        <strong>Add Prototype</strong> to register
+        a new student project.
+
+    </p>
+
+</div>
+
+</div>
+
+<!-- =========================
+     ADD PROTOTYPE
+========================= -->
+
+<div id="addPrototype">
+
+<div class="content-card">
+
+    <h1>
+        Add New Prototype
+    </h1>
+
+    <p class="section-description">
+
+        Enter the information about the prototype
+        you want to add to the TechVault system.
+
+    </p>
+
+    <form id="prototypeForm">
+
+        <div class="form-row">
+
+    <div class="form-group">
+
+        <label>
+            Course:
+        </label>
+
+        <select id="prototypeCourse" required>
+
+            <option>COMMS 1</option>
+            <option>COMMS 2</option>
+            <option>COMMS 3</option>
+            <option>COMMS 4</option>
+            <option>COMMS 5</option>
+
+            <option>ELEC 1</option>
+            <option>ELEC 2</option>
+            <option>ELEC 3</option>
+
+            <option>DIGI ELEC 1</option>
+            <option>DIGI ELEC 3</option>
+            <option> CAPSTONE</option>
+
+        </select>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>
+            Prototype Name:
+        </label>
+
+        <input
+            type="text"
+            id="prototypeName"
+            placeholder="Enter prototype name"
+            required
+        >
+
+    </div>
+
+</div>
+
+<div class="form-group">
+    <label for="prototypeAcademicYear">Academic Year:</label>
+    <input
+        type="text"
+        id="prototypeAcademicYear"
+        placeholder="e.g. 2026-2027"
+        required
+    >
+</div>
+
+<br><br>
+
+        <br><br>
+
+        <label>
+            Description:
+        </label>
+
+        <br>
+
+        <div
+    id="prototypeDescription"
+    class="rich-text-editor"
+    contenteditable="true"
+    data-placeholder="Describe the prototype"
+></div>
+
+        <br><br>
+
+        <label>
+            Purpose:
+        </label>
+
+        <br>
+
+        <div
+    id="prototypePurpose"
+    class="rich-text-editor"
+    contenteditable="true"
+    data-placeholder="What is the purpose of this prototype?"
+></div>
+
+        <br><br>
+
+        <label>
+            Components:
+        </label>
+
+        <br>
+
+        <div
+    id="prototypeComponents"
+    class="rich-text-editor"
+    contenteditable="true"
+    data-placeholder="List the components used"
+></div>
+        <br><br>
+
+        <label>
+            Group Members:
+        </label>
+
+        <br>
+
+        <div
+    id="prototypeMembers"
+    class="rich-text-editor"
+    contenteditable="true"
+    data-placeholder="Enter the names of the group members"
+></div>
+
+        <br><br>
+
+        <div class="upload-row">
+
+    <div class="upload-box">
+
+        <label>
+            Schematic Diagram
+        </label>
+
+        <div class="upload-area">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            <p id="schematicUploadText">
+                Click to upload schematic diagram
+            </p>
+
+           <div id="schematicPreview"></div>
+           
+           <input
+            type="file"
+            id="schematic"
+            accept="image/*"
+            required
+            >
+        
+
+        </div>
+
+    </div>
+
+    <div class="upload-box">
+
+        <label>
+            Prototype Pictures
+        </label>
+
+        <div class="upload-area">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            <p id="picturesUploadText">
+                Click to upload prototype pictures
+            </p>
+
+            <div class="picture-upload-container">
+
+    <input
+        type="file"
+        id="prototypePictures"
+        accept="image/*"
+        multiple
+        hidden
+    >
+
+    <!-- PREVIEW FIRST: SHOWS AT THE TOP ONCE PICTURES EXIST -->
+    <div id="picturesPreview"></div>
+
+    <button
+        type="button"
+        id="addPictureBtn"
+        onclick="document.getElementById('prototypePictures').click()"
+    >
+        + Add Picture
+    </button>
+
+    <p id="pictureLimitText">
+        Minimum: 1 picture | Maximum: 3 pictures
+    </p>
+
+</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<br><br>
+
+        <br><br>
+
+        <div class="button-row">
+
+    <button type="submit">
+        Save Prototype
+    </button>
+
+    <button 
+    type="button"
+    onclick="showHome()">
+        Cancel
+    </button>
+
+</div>
+    </form>
+
+</div>
+
+</div>
+
+<!-- =========================
+     CATEGORIES
+========================= -->
+
+<div id="categories">
+
+<div class="content-card">
+
+    <h1>
+        Categories
+    </h1>
+    
+
+    <p>
+
+        Select a category to view the prototypes
+        registered under that course.
+
+    </p>
+
+    <div class="category-container">
+
+        <button onclick="showCategory('COMMS 1')">
+            COMMS 1
+        </button>
+
+        <button onclick="showCategory('COMMS 2')">
+            COMMS 2
+        </button>
+
+        <button onclick="showCategory('COMMS 3')">
+            COMMS 3
+        </button>
+
+        <button onclick="showCategory('COMMS 4')">
+            COMMS 4
+        </button>
+
+        <button onclick="showCategory('COMMS 5')">
+            COMMS 5
+        </button>
+
+        <button onclick="showCategory('ELEC 1')">
+            ELEC 1
+        </button>
+
+        <button onclick="showCategory('ELEC 2')">
+            ELEC 2
+        </button>
+
+        <button onclick="showCategory('ELEC 3')">
+            ELEC 3
+        </button>
+
+        <button onclick="showCategory('DIGI ELEC 1')">
+            DIGI ELEC 1
+        </button>
+
+        <button onclick="showCategory('DIGI ELEC 3')">
+            DIGI ELEC 3
+        <button onclick="showCategory('CAPSTONE')">
+            CAPSTONE
+        </button>
+
+        </button>
+
+    </div>
+
+    <h2 id="categoryTitle">
+        Select Category
+    </h2>
+
+    <table id="categoryTable">
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Prototype Name
+                </th>
+
+                <th>
+                    Action
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="categoryTableBody">
+
+        </tbody>
+
+    </table>
+
+    <p
+        id="noCategoryPrototype"
+        style="display: none;"
+    >
+
+        No prototypes available in this category.
+
+    </p>
+
+</div>
+
+</div>
+
+<!-- =========================
+     VIEW PROTOTYPE FULL PAGE
+========================= -->
+
+<div id="viewPrototype">
+
+    <div class="content-card view-prototype-card">
+
+        <!-- HEADER -->
+        <div class="view-header">
+
+    <div>
+        <h1 id="viewTitle">
+            Prototype Name
+        </h1>
+    </div>
+
+</div>
+
+        <!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<div class="view-layout">
+
+    <!-- LEFT: SCHEMATIC -->
+    <div class="view-schematic-main">
+
+        <div class="view-section-title">
+            Schematic Diagram
+        </div>
+
+                <div class="schematic-main-box">
+
+            <img
+                id="viewSchematic"
+                alt="Schematic Diagram"
+                title="Click to enlarge"
+            >
+
+            <div
+                id="viewNoSchematic"
+                class="view-no-image"
+            >
+                <i class="fa-regular fa-image"></i>
+                <span>No schematic diagram available</span>
+            </div>
+
+        </div>
+
+        <!-- =========================
+             PROTOTYPE PICTURES
+        ========================= -->
+
+        <div class="view-pictures-section">
+
+            <div class="view-section-title">
+                Prototype Pictures
+            </div>
+
+            <div
+                id="viewPictures"
+                class="view-pictures-grid"
+            >
+
+            </div>
+
+            <div
+                id="viewNoPictures"
+                class="view-no-pictures"
+            >
+                No prototype pictures available.
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT: PROTOTYPE DETAILS -->
+    <div class="view-details-panel">
+
+        <div class="view-detail-row">
+    <div class="view-detail-label">
+        Course
+    </div>
+
+    <div
+        class="view-detail-value"
+        id="viewCourse"
+    ></div>
+</div>
+
+<div class="view-detail-row">
+    <div class="view-detail-label">
+        Academic Year
+    </div>
+
+    <div
+        class="view-detail-value"
+        id="viewAcademicYear"
+    ></div>
+</div>
+
+        <div class="view-detail-row">
+            <div class="view-detail-label">
+                Prototype Name
+            </div>
+
+            <div
+                class="view-detail-value"
+                id="viewPrototypeName"
+            ></div>
+        </div>
+
+        <div class="view-detail-row">
+            <div class="view-detail-label">
+                Description
+            </div>
+
+            <div
+                class="view-detail-value"
+                id="viewDescription"
+            ></div>
+        </div>
+
+        <div class="view-detail-row">
+            <div class="view-detail-label">
+                Purpose
+            </div>
+
+            <div
+                class="view-detail-value"
+                id="viewPurpose"
+            ></div>
+        </div>
+
+        <div class="view-detail-row">
+            <div class="view-detail-label">
+                Components
+            </div>
+
+            <div
+                class="view-detail-value"
+                id="viewComponents"
+            ></div>
+        </div>
+
+    
+
+                   <div class="view-detail-row">
+            <div class="view-detail-label">
+                Members
+            </div>
+
+            <div
+                class="view-detail-value"
+                id="viewMembers"
+            ></div>
+        </div>
+
+    </div>
+
+</div>
+
+        <!-- BACK -->
+
+        <div class="view-bottom-actions">
+
+            <button
+                type="button"
+                class="view-back-btn"
+                onclick="showCategories()"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+                Back
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =========================
+     FULL SCREEN IMAGE VIEWER
+========================= -->
+
+<div id="imageViewer" class="image-viewer">
+
+    <button
+        type="button"
+        class="image-viewer-close"
+        onclick="closeImageViewer()"
+    >
+        &times;
+    </button>
+
+    <img
+        id="imageViewerImage"
+        alt="Full Screen Preview"
+    >
+
+</div>
+
+<!-- =========================
+     EDIT PROTOTYPE FULL PAGE
+========================= -->
+
+<div id="editPrototype">
+
+<div class="content-card">
+
+<h1>
+Edit Prototype
+</h1>
+
+<label>
+Course
+</label>
+
+<br>
+
+<select id="editCourse">
+
+<option value="COMMS 1">COMMS 1</option>
+<option value="COMMS 2">COMMS 2</option>
+<option value="COMMS 3">COMMS 3</option>
+<option value="COMMS 4">COMMS 4</option>
+<option value="COMMS 5">COMMS 5</option>
+<option value="ELEC 1">ELEC 1</option>
+<option value="ELEC 2">ELEC 2</option>
+<option value="ELEC 3">ELEC 3</option>
+<option value="DIGI ELEC 1">DIGI ELEC 1</option>
+<option value="DIGI ELEC 3">DIGI ELEC 3</option>
+<option value="CAPSTONE">CAPSTONE</option>
+
+</select>
+
+<br><br>
+
+<label>
+Prototype Name
+</label>
+
+<br>
+
+<input id="editName">
+<br><br>
+
+<label for="editAcademicYear">Academic Year:</label>
+<br>
+<input
+    type="text"
+    id="editAcademicYear"
+    placeholder="e.g. 2026-2027"
+    required
+>
+<br><br>
+
+<label>
+Description
+</label>
+
+<br>
+
+<div
+    id="editDescription"
+    class="rich-text-editor"
+    contenteditable="true"
+    data-placeholder="Enter description"
+></div>
+
+<br><br>
+
+<label>
+Purpose
+</label>
+
+<br>
+
+<div
+    id="editPurpose"
+    class="rich-text-editor"
+    contenteditable="true"
+    data-placeholder="Enter purpose"
+></div>
+
+
+<br><br>
+
+<label>
+Components
+</label>
+
+<br>
+
+<div
+    id="editComponents"
+    class="rich-text-editor"
+    contenteditable="true"
+    data-placeholder="Enter components"
+></div>
+
+
+<br><br>
+
+<label>
+Members
+</label>
+
+<br>
+
+<div
+    id="editMembers"
+    class="rich-text-editor"
+    contenteditable="true"
+    data-placeholder="Enter group members"
+></div>
+
+<h2>
+Current Schematic Diagram
+</h2>
+
+<img
+id="editCurrentSchematic"
+alt="Current Schematic">
+
+<h2>
+Current Prototype Pictures
+</h2>
+
+<p id="editPicturesLimitText">
+    Minimum: 1 picture | Maximum: 3 pictures
+</p>
+
+<div id="editCurrentPictures"></div>
+
+<p id="editNoPictures">
+    No current prototype pictures.
+</p>
+
+<br><br>
+
+<label>
+Change Schematic
+</label>
+
+<br>
+
+<input 
+type="file"
+id="editSchematic"
+accept="image/*"
+>
+
+
+
+<br><br>
+
+<label>
+    Change Pictures
+</label>
+
+<br>
+
+<button
+    type="button"
+    id="editAddPictureBtn"
+    onclick="document.getElementById('editPictures').click()"
+>
+    + Add Picture
+</button>
+
+<input
+    type="file"
+    id="editPictures"
+    accept="image/*"
+    multiple
+    hidden
+>
+
+
+
+<br><br>
+
+<button onclick="saveEditPrototype()">
+
+SAVE CHANGES
+
+</button>
+
+<button onclick="showCategories()">
+
+CANCEL
+
+</button>
+
+</div>
+
+</div>
+
+<!-- =========================
+     ABOUT US
+========================= -->
+
+<div id="about">
+
+<div class="content-card about-card">
+
+    <h1>
+        About TechVault
+    </h1>
+
+    <p>
+
+        <strong>TechVault: Showcasing ECE Students'
+        Prototypes and Innovation</strong> is a digital
+        platform created to showcase, organize, and
+        document innovative prototypes developed by
+        Electronics Engineering students.
+
+    </p>
+
+    <p>
+
+        The platform provides a centralized space where
+        ECE student projects can be presented according
+        to their respective courses. Users can explore
+        project descriptions, purposes, components,
+        members, schematic diagrams, and prototype
+        pictures.
+
+    </p>
+
+    <h2>
+        About Our Group
+    </h2>
+
+    <p>
+
+        We are a group of Electronics Engineering students
+        who developed TechVault to promote creativity,
+        innovation, collaboration, and technological
+        development among ECE students.
+
+    </p>
+
+    <p>
+
+        Through this platform, we aim to make student
+        prototypes easier to organize, access, and
+        explore.
+
+    </p>
+
+    <h2>
+        Our Team
+    </h2>
+
+        <div class="team-container">
+
+        <div class="team-card">
+
+            <img src="images/member1.jpg" alt="Member 1">
+
+            <h3>
+                KEANDRA ABBIE CRUZ
+            </h3>
+
+            <p>
+                Electronics Engineering Student
+            </p>
+
+            <a href="mailto:techvault@email.com">
+                 katcruz24@bpsu.edu.ph
+                </a>
+
+        </div>
+
+        <div class="team-card">
+
+            <img src="images/member2.jpg" alt="Member 2">
+
+            <h3>
+                FLORENCE GABRIELLE QUINTO
+            </h3>
+
+            <p>
+                Electronics Engineering Student
+            </p>
+
+            <a href="mailto:techvault@email.com">
+                   fgdquinto24@bpsu.edu.ph 
+                </a>
+
+        </div>
+
+        <div class="team-card">
+
+            <img src="images/member3.jpg" alt="Member 3">
+
+            <h3>
+                DANIELA RIES MATIAS
+            </h3>
+
+            <p>
+                Electronics Engineering Student
+            </p>
+
+             <a href="mailto:techvault@email.com">
+                   drmmatias@bpsu.edu.ph 
+                </a>
+
+        </div>
+
+        <div class="team-card">
+
+            <img src="images/member4.jpg" alt="Member 4">
+
+            <h3>
+               JAILLIE CHARYZ'L TUAZON 
+            </h3>
+
+            <p>
+                Electronics Engineering Student
+            </p>
+
+            <a href="mailto:techvault@email.com">
+                  jcdtuazon24@bpsu.edu.ph
+                </a>
+
+        </div>
+
+    </div>
+
+    <!-- CONTACT US -->
+
+    <div class="contact-section">
+
+        <h2>
+            Contact Us
+        </h2>
+
+        <p>
+
+            For questions, suggestions, technical
+            concerns, or emergency assistance related
+            to TechVault, please contact our team
+            using the information below.
+
+        </p>
+
+        <div class="contact-box">
+
+            <p>
+
+                📧 <strong>Email:</strong>
+
+                <a href="mailto:techvault@email.com">
+                    techvault@email.com
+                </a>
+
+            </p>
+
+            <p>
+
+                📞 <strong>Contact Number:</strong>
+
+                0956-892-6300
+
+            </p>
+
+            <p>
+
+                🚨 <strong>Emergency / Urgent Concerns:</strong>
+
+                Please contact the TechVault team
+                through the email address or phone
+                number provided above.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- EXTERNAL JAVASCRIPT -->
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
